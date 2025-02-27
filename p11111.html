@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himalaya Technologies - Sign Up</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #66c2ff, #99ff99);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Container Styles */
+    .container {
+      width: 100%;
+      max-width: 550px;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: scale(1.03);
+    }
+
+    /* Header */
+    h2 {
+      text-align: center;
+      color: #008CBA;
+      font-size: 30px;
+      margin-bottom: 25px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Form Styling */
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="file"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      outline: none;
+      transition: border-color 0.3s ease;
+      background-color: #f9f9f9;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="date"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #008CBA;
+      background-color: #e0f7fa;
+    }
+
+    /* Error Messages Styling */
+    .error {
+      color: red;
+      font-size: 14px;
+      position: absolute;
+      right: -250px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 400;
+      max-width: 250px;
+      background-color: #ffd6d6;
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ff6b6b;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .form-group.error input,
+    .form-group.error select,
+    .form-group.error textarea {
+      border-color: #ff6b6b;
+      background-color: #fff4f4;
+    }
+
+    .form-group.error .error {
+      opacity: 1;
+    }
+
+    /* Submit Button */
+    button.submit-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #008CBA;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button.submit-btn:hover {
+      background-color: #007bb5;
+      transform: translateY(-3px);
+    }
+
+    button.submit-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sign-Up Form Section -->
+  <div class="container" id="sign-up-container">
+    <h2>Himalaya Technologies - Sign Up</h2>
+    <form id="sign-up-form" onsubmit="return validateForm()">
+      
+      <div class="form-group" id="name-group">
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="full-name" required placeholder="Enter your full name">
+        <span class="error" id="name-error">Full name is required.</span>
+      </div>
+
+      <div class="form-group" id="email-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+        <span class="error" id="email-error">Please enter a valid email address.</span>
+      </div>
+
+      <div class="form-group" id="phone-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" required placeholder="Enter your phone number">
+        <span class="error" id="phone-error">Phone number must be 10 digits.</span>
+      </div>
+
+      <div class="form-group" id="password-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
+        <span class="error" id="password-error">Password must be at least 6 characters long.</span>
+      </div>
+
+      <div class="form-group" id="confirm-password-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+        <span class="error" id="confirm-password-error">Passwords do not match.</span>
+      </div>
+
+      <div class="form-group" id="dob-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+        <span class="error" id="dob-error">Date of Birth is required.</span>
+      </div>
+
+      <div class="form-group" id="gender-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="">Select your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="error" id="gender-error">Gender is required.</span>
+      </div>
+
+      <div class="form-group" id="country-group">
+        <label for="country">Country</label>
+        <select id="country" name="country" required>
+          <option value="">Select your country</option>
+          <option value="Nepal">Nepal</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error" id="country-error">Country is required.</span>
+      </div>
+
+      <div class="form-group" id="address-group">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+        <span class="error" id="address-error">Address is required.</span>
+      </div>
+
+      <div class="form-group" id="picture-group">
+        <label for="profile-picture">Profile Picture</label>
+        <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+        <span class="error" id="picture-error">Please upload a valid image.</span>
+      </div>
+
+      <div class="form-group" id="terms-group">
+        <label>
+          <input type="checkbox" id="terms" name="terms" required> I agree to the <a href="#">Terms and Conditions</a>
+        </label>
+        <span class="error" id="terms-error">You must agree to the Terms and Conditions.</span>
+      </div>
+
+      <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      let isValid = true;
+
+      // Clear previous errors
+      clearErrors();
+
+      // Name validation
+      const name = document.getElementById("full-name").value;
+      if (name === "") {
+        showError("name-group", "Full name is required.");
+        isValid = false;
+      }
+
+      // Email validation
+      const email = document.getElementById("email").value;
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!email.match(emailPattern)) {
+        showError("email-group", "Please enter a valid email address.");
+        isValid = false;
+      }
+
+      // Phone validation
+      const phone = document.getElementById("phone").value;
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phone.match(phonePattern)) {
+        showError("phone-group", "Phone number must be 10 digits.");
+        isValid = false;
+      }
+
+      // Password validation
+      const password = document.getElementById("password").value;
+      if (password.length < 6) {
+        showError("password-group", "Password must be at least 6 characters long.");
+        isValid = false;
+      }
+
+      // Confirm password validation
+      const confirmPassword = document.getElementById("confirm-password").value;
+      if (confirmPassword !== password) {
+        showError("confirm-password-group", "Passwords do not match.");
+        isValid = false;
+      }
+
+      // Date of birth validation
+      const dob = document.getElementById("dob").value;
+      if (dob === "") {
+        showError("dob-group", "Date of Birth is required.");
+        isValid = false;
+      }
+
+      // Gender validation
+      const gender = document.getElementById("gender").value;
+      if (gender === "") {
+        showError("gender-group", "Gender is required.");
+        isValid = false;
+      }
+
+      // Country validation
+      const country = document.getElementById("country").value;
+      if (country === "") {
+        showError("country-group", "Country is required.");
+        isValid = false;
+      }
+
+      // Address validation
+      const address = document.getElementById("address").value;
+      if (address === "") {
+        showError("address-group", "Address is required.");
+        isValid = false;
+      }
+
+      // Profile picture validation
+      const picture = document.getElementById("profile-picture").files[0];
+      if (picture && !picture.type.startsWith('image/')) {
+        showError("picture-group", "Please upload a valid image.");
+        isValid = false;
+      }
+
+      // Terms validation
+      const terms = document.getElementById("terms").checked;
+      if (!terms) {
+        showError("terms-group", "You must agree to the Terms and Conditions.");
+        isValid = false;
+      }
+
+      if (isValid) {
+        displayHomePage();
+      }
+
+      return false; // Prevent form submission
+    }
+
+    function showError(groupId, message) {
+      const group = document.getElementById(groupId);
+      group.classList.add("error");
+      const errorMessage = group.querySelector(".error");
+      errorMessage.innerText = message;
+    }
+
+    function clearErrors() {
+      const errorGroups = document.querySelectorAll(".form-group");
+      errorGroups.forEach(group => {
+        group.classList.remove("error");
+        const errorMessage = group.querySelector(".error");
+        if (errorMessage) errorMessage.innerText = "";
+      });
+    }
+
+    function displayHomePage() {
+      document.body.innerHTML = `
+        <div class="container">
+          <h1>Welcome to Himalaya Technologies</h1>
+          <p>We are a leading technology company based in Nepal. Our mission is to provide innovative solutions for businesses worldwide, leveraging the best of technology and design.</p>
+          <h3>Our Services:</h3>
+          <ul>
+            <li>Web Development</li>
+            <li>Mobile Application Development</li>
+            <li>Cloud Solutions</li>
+            <li>AI & Machine Learning Solutions</li>
+          </ul>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
+
+
